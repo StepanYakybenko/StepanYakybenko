@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>mtsTest</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+        <aspectj.version>1.8.10</aspectj.version>
+        <allure-junit4.version>2.6.0</allure-junit4.version>
+
+        <!-- Define the version of AspectJ -->
+            <aspectj.version>1.9.21</aspectj.version>
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+        <!-- Define the version of Allure you want to use via the allure.version property -->
+    <allure.version>2.25.0</allure.version>
+
+    <!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
+    <dependencyManagement>
+            <dependencies>
+                <dependency>
+                    <groupId>io.qameta.allure</groupId>
+                    <artifactId>allure-bom</artifactId>
+                    <version>${allure.version}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
+            </dependencies>
+        </dependencyManagement>
+
+        <!-- Add necessary Allure dependencies to dependencies section -->
+        <dependencies>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-junit5</artifactId>
+                <scope>test</scope>
+            </dependency>
+    </dependencies>
+    <dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.2.3</version>
+    <configuration>
+        <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+        </argLine>
+    </configuration>
+    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+    </dependencies>
+</project>
